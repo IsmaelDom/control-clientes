@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addClienteModal">
+                <a href="" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#addClienteModal">
                     <i class="fas fa-user-plus"></i> Agregar Cliente
                 </a>
             </div>
@@ -11,7 +11,7 @@
     </div>
 </section>
 <!-- Fin Sección Botones -->
-<!-- Inicio Lista Clientes -->
+<!-- Inicio Sección Lista Clientes -->
 <section id="clientes">
     <div class="container">
         <div class="row">
@@ -67,4 +67,44 @@
         </div>
     </div>
 </section>
-<!-- Fin Lista Clientes -->
+<!-- Fin Sección Lista Clientes -->
+<!-- Inicio Modal para Cliente -->
+<div class="modal fade" id="addClienteModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="modalLabel">Agregar Cliente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">@</span>
+                        <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" aria-label="Ingrese su nombre" aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">@</span>
+                        <input type="text" class="form-control" name="apellido" placeholder="Ingrese su apellido" aria-label="Ingrese su apellido" aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" name="correo" placeholder="Ingrese su correo" aria-label="Ingrese su correo" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">@example.com</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name="saldo" class="form-control" placeholder="Ingrese saldo" aria-label="Ingrese saldo">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="far fa-times-circle"></i> Cerrar</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-user-check"></i> Guardar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- Fin Modal para Cliente -->
