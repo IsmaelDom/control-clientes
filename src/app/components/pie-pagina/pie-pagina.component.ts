@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pie-pagina.component.css']
 })
 export class PiePaginaComponent implements OnInit {
-
+  anio: number = 0;
   constructor() { }
 
   ngOnInit(): void {
+    this.anio = new Date().getFullYear();//Obtiene año actual
   }
 
 }
