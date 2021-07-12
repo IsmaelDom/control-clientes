@@ -7,9 +7,9 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ClienteServicio {
     clientesColeccion: AngularFirestoreCollection<Cliente>;
-    cienteDoc: AngularFirestoreDocument<Cliente>;
-    clientes: Observable<Cliente[]>;
-    cliente: Observable<Cliente>;
+    cienteDoc!: AngularFirestoreDocument<Cliente>;
+    clientes!: Observable<Cliente[]>;
+    cliente!: Observable<Cliente>;
 
     constructor(private db: AngularFirestore) {
         this.clientesColeccion = db.collection('clientes', ref => ref.orderBy('nombre', 'asc'));
