@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Cliente } from 'src/app/model/cliente.model';
@@ -10,7 +10,6 @@ import { ClienteServicio } from 'src/app/services/cliente.service';
   styleUrls: ['./clientes.component.css']
 })
 
-@Injectable()
 export class ClientesComponent implements OnInit {
   clientes!: Cliente[];
 

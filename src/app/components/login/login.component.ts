@@ -1,6 +1,7 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +9,28 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./login.component.css']
 })
 
-@Injectable()
 export class LoginComponent implements OnInit {
 
   email!: string;
   password!: string;
 
   constructor(private router: Router,
-              private flashMessages: FlashMessagesService) { }
+              private flashMessages: FlashMessagesService,
+              private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  login(){
-
+  login() {
+    this.loginService.login(this.email, this.password)
+                    .then(res => {
+                      this.router.navigate(['/']);
+                    })
+                    .catch(error => {
+                      this.flashMessages.show(error.message, {
+                        cssClass: 'alert-danger', timeout: 4000
+                      })
+                    });
   }
 
 }
