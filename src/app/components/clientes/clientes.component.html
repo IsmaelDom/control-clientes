@@ -106,14 +106,14 @@
                     </div>
                 </div>
                 <div class="input-group mb-3 has-validation">
-                    <input type="email" class="form-control" name="correo" placeholder="Ingrese su correo" aria-label="Ingrese su correo" 
-                        #correo="ngModel" [(ngModel)]="cliente.email" [ngClass]="{'is-invalid': correo.errors && correo.touched}"
+                    <input type="email" class="form-control" name="email" placeholder="Ingrese su correo" aria-label="Ingrese su correo" 
+                        #email="ngModel" [(ngModel)]="cliente.email" [ngClass]="{'is-invalid': email.errors && email.touched}"
                         aria-describedby="basic-addon2" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
                     <span class="input-group-text" id="basic-addon2">@example.com</span>
-                    <div class="invalid-feedback" [hidden]="!correo.errors?.required">
+                    <div class="invalid-feedback" [hidden]="!email.errors?.required">
                         El correo es requerido.
                     </div>
-                    <div class="invalid-feedback" [hidden]="!correo.errors?.pattern">
+                    <div class="invalid-feedback" [hidden]="!email.errors?.pattern">
                         El correo no es válido.
                     </div>
                 </div>

@@ -1,1 +1,105 @@
-<p>editar-cliente works!</p>
+<!--Inicio Header-->
+<header id="main-header" class="py-2 bg-info text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          <i class="fas fa-user-check"></i> Editar Cliente
+        </h1>
+      </div>
+    </div>
+  </div>
+</header>
+<!--Fin Header-->
+<!--Inicio Formulario para editar-->
+<form #clienteForm="ngForm" (ngSubmit)="guardar(clienteForm)">
+
+    <flash-messages></flash-messages>
+
+    <!--Inicio Botones para Acciones-->
+    <section id="actions" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a routerLink="/" class="btn btn-light btn-block">
+                        <i class="fas fa-arrow-alt-circle-left"></i> Volver
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success btn-block">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" (click)="eliminar()" class="btn btn-danger btn-block">
+                        <i class="fas fa-user-minus"></i> Eliminar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Fin Botones para Acciones-->
+    <!--Inicio para ver el cliente y Acciones-->
+    <section id="details">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Editar Cliente</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3 has-validation">
+                                <span class="input-group-text" id="addon-wrapping">@</span>
+                                <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" #nombre="ngModel"
+                                    [(ngModel)]="cliente.nombre" [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                                    aria-label="Ingrese su nombre" aria-describedby="addon-wrapping" minlength="2" required />
+                                <div class="invalid-feedback" [hidden]="!nombre.errors?.required">
+                                    El nombre es requerido.
+                                </div>
+                                <div class="invalid-feedback" [hidden]="!nombre.errors?.minlength">
+                                    Debe tener al menos 2 caracteres.
+                                </div>
+                            </div>
+                            <div class="input-group mb-3 has-validation">
+                                <span class="input-group-text" id="addon-wrapping">@</span>
+                                <input type="text" class="form-control" name="apellido" placeholder="Ingrese su apellido" #apellido="ngModel"
+                                    [(ngModel)]="cliente.apellido" [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
+                                    aria-label="Ingrese su apellido" aria-describedby="addon-wrapping" minlength="2" required>
+                                <div class="invalid-feedback" [hidden]="!apellido.errors?.required">
+                                    El apellido es requerido.
+                                </div>
+                                <div class="invalid-feedback" [hidden]="!apellido.errors?.minlength">
+                                    Debe tener al menos 2 caracteres.
+                                </div>
+                            </div>
+                            <div class="input-group mb-3 has-validation">
+                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control" name="email" placeholder="Ingrese su correo"
+                                    aria-label="Ingrese su correo" #email="ngModel" [(ngModel)]="cliente.email"
+                                    [ngClass]="{'is-invalid': email.errors && email.touched}" aria-describedby="basic-addon2"
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                                <div class="invalid-feedback" [hidden]="!email.errors?.required">
+                                    El correo es requerido.
+                                </div>
+                                <div class="invalid-feedback" [hidden]="!email.errors?.pattern">
+                                    El correo no es válido.
+                                </div>
+                            </div>
+                            <div class="input-group mb-3 has-validation">
+                                <span class="input-group-text">$</span>
+                                <input type="number" name="saldo" class="form-control" placeholder="Ingrese saldo" aria-label="Ingrese saldo"
+                                    #saldo="ngModel" [(ngModel)]="cliente.saldo" [ngClass]="{'is-invalid': saldo.errors && saldo.touched}" required>
+                                <div class="invalid-feedback" [hidden]="!saldo.errors?.required">
+                                    El saldo es requerido.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Fin para ver el cliente y Acciones-->
+</form>
+<!--Fin Formulario para editar-->

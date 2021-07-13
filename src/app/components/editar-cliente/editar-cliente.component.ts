@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Cliente } from 'src/app/model/cliente.model';
+import { ClienteServicio } from 'src/app/services/cliente.service';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -7,9 +12,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarClienteComponent implements OnInit {
 
-  constructor() { }
+  cliente: Cliente = {
+    nombre: '',
+    apellido: '',
+    email: '',
+    saldo: 0
+  }
+  
+  id!:string;
+  constructor(private clientesServicio: ClienteServicio,
+              private flashMessages: FlashMessagesService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.clientesServicio.getCliente(this.id).subscribe(cliente => {
+      this.cliente = cliente;
+    });
+  }
+
+  guardar({value, valid}: NgForm){
+    
+  }
+
+  eliminar(){
+
   }
 
 }

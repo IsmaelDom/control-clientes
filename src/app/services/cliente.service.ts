@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ClienteServicio {
     clientesColeccion: AngularFirestoreCollection<Cliente>;
-    cienteDoc!: AngularFirestoreDocument<Cliente>;
+    clienteDoc!: AngularFirestoreDocument<Cliente>;
     clientes!: Observable<Cliente[]>;
     cliente!: Observable<Cliente>;
 
@@ -31,5 +31,17 @@ export class ClienteServicio {
 
     agregarCliente(cliente: Cliente){
         this.clientesColeccion.add(cliente);
+    }
+
+    getCliente(id: string) {
+        this.clienteDoc = this.db.doc<Cliente>(`clientes/${id}`);
+        this.cliente = this.clienteDoc.snapshotChanges().pipe(
+            map(accion => {
+                const datos = accion.payload.data() as Cliente;
+                datos.id = accion.payload.id;
+                return datos;
+            })
+        );
+        return this.cliente;
     }
 }

@@ -54,6 +54,7 @@ export class ClientesComponent implements OnInit {
         cssClass: 'alert-danger', timeout: 4000
       });
     } else {
+      console.log(value);
       this.clientesServicio.agregarCliente(value);//Se inserta el cliente
       this.clienteForm.resetForm();
       this.cerrarModal();
