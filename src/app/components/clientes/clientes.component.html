@@ -76,27 +76,55 @@
             <h5 class="modal-title" id="modalLabel">Agregar Cliente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="">
+
+        <flash-messages></flash-messages>
+
+        <form #clienteForm="ngForm" (ngSubmit)="agregar(clienteForm)">
             <div class="modal-body">
-                <div class="input-group mb-3">
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping">@</span>
-                        <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" aria-label="Ingrese su nombre" aria-describedby="addon-wrapping">
+                <div class="input-group mb-3 has-validation">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre"
+                        #nombre="ngModel" [(ngModel)]="cliente.nombre" [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                        aria-label="Ingrese su nombre" aria-describedby="addon-wrapping" minlength="2" required />
+                    <div class="invalid-feedback" [hidden]="!nombre.errors?.required">
+                        El nombre es requerido.
+                    </div>
+                    <div class="invalid-feedback" [hidden]="!nombre.errors?.minlength">
+                        Debe tener al menos 2 caracteres.
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping">@</span>
-                        <input type="text" class="form-control" name="apellido" placeholder="Ingrese su apellido" aria-label="Ingrese su apellido" aria-describedby="addon-wrapping">
+                <div class="input-group mb-3 has-validation">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" name="apellido" placeholder="Ingrese su apellido" 
+                        #apellido="ngModel" [(ngModel)]="cliente.apellido" [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
+                        aria-label="Ingrese su apellido" aria-describedby="addon-wrapping" minlength="2" required>
+                    <div class="invalid-feedback" [hidden]="!apellido.errors?.required">
+                        El apellido es requerido.
+                    </div>
+                    <div class="invalid-feedback" [hidden]="!apellido.errors?.minlength">
+                        Debe tener al menos 2 caracteres.
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="correo" placeholder="Ingrese su correo" aria-label="Ingrese su correo" aria-describedby="basic-addon2">
+                <div class="input-group mb-3 has-validation">
+                    <input type="email" class="form-control" name="correo" placeholder="Ingrese su correo" aria-label="Ingrese su correo" 
+                        #correo="ngModel" [(ngModel)]="cliente.email" [ngClass]="{'is-invalid': correo.errors && correo.touched}"
+                        aria-describedby="basic-addon2" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
                     <span class="input-group-text" id="basic-addon2">@example.com</span>
+                    <div class="invalid-feedback" [hidden]="!correo.errors?.required">
+                        El correo es requerido.
+                    </div>
+                    <div class="invalid-feedback" [hidden]="!correo.errors?.pattern">
+                        El correo no es válido.
+                    </div>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 has-validation">
                     <span class="input-group-text">$</span>
-                    <input type="number" name="saldo" class="form-control" placeholder="Ingrese saldo" aria-label="Ingrese saldo">
+                    <input type="number" name="saldo" class="form-control" placeholder="Ingrese saldo" aria-label="Ingrese saldo"
+                        #saldo="ngModel" [(ngModel)]="cliente.saldo" [ngClass]="{'is-invalid': saldo.errors && saldo.touched}"
+                        required>
+                    <div class="invalid-feedback" [hidden]="!saldo.errors?.required">
+                        El saldo es requerido.
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
