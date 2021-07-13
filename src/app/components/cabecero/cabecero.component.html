@@ -7,21 +7,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link active" routerLink="/" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <i class="fas fa-user-circle"></i> Bienvenido
+            <i class="fas fa-user-circle"></i> Bienvenido {{ loggedInUser }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
@@ -29,14 +26,17 @@
                 <i class="fas fa-cog"></i> Configuración
               </a>
             </li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li *ngIf="isLoggedIn">
+              <a class="dropdown-item" href="#" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i> Salir
+              </a>
+            </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn">
           <a routerLink="/login" class="nav-link">
             <i class="fas fa-user-lock"></i> Login
           </a>

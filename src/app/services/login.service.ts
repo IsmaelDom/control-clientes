@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { map } from "rxjs/operators"
 
 @Injectable()//Solo se agrega en servicios que inyecta a otros servicios
 export class LoginService {
@@ -14,4 +15,15 @@ export class LoginService {
                 )
         });
     }
+
+    getAuth(){
+        return this.authService.authState.pipe(
+            map(auth => auth)
+        );
+    }
+
+    logout(){
+        this.authService.signOut();
+    }
+
 }
