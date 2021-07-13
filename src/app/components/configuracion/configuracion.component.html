@@ -1,1 +1,55 @@
-<p>configuracion works!</p>
+<!--Inicio Header-->
+<header id="main-header" class="py-2 bg-info text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>
+            <i class="fas fa-cogs"></i> Configuración
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--Fin Header-->
+  <!--Inicio Botones-->
+  <section id="action" class="py-4 mb-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="" routerLink="/" class="btn btn-outline-dark d-grid gap-2">
+                    <h6><i class="fas fa-hand-point-left"></i> Volver</h6>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" (click)="guardar()" class="btn btn-outline-success d-grid gap-2">
+                    <h6><i class="fas fa-save"></i> Guardar</h6>
+                </button>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!--Fin Botones-->
+  <!--Inicio Formulario Configuración-->
+  <section id="configuracion">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Editar Configuración</h4>
+                    </div>
+                    <div class="card-body">
+                        <fieldset class="form-group">
+                            <legend>Permitir registro de usuarios</legend>
+                            <div class="form-check-label">
+                                <input type="checkbox" name="permitirRegistro" id="permitirRegistro" class="form-check-input"
+                                    [(ngModel)]="permitirRegistro" [checked]="permitirRegistro"> {{ permitirRegistro ? "Si":"No" }}
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!--Fin Formulario Configuración-->
