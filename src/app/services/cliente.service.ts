@@ -44,4 +44,14 @@ export class ClienteServicio {
         );
         return this.cliente;
     }
+
+    modificar(cliente: Cliente){
+        this.clienteDoc = this.db.doc(`clientes/${cliente.id}`);
+        this.clienteDoc.update(cliente);
+    }
+
+    eliminar(cliente: Cliente){
+        this.clienteDoc = this.db.doc(`clientes/${cliente.id}`);
+        this.clienteDoc.delete();
+    }
 }

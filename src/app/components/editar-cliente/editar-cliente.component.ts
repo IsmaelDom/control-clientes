@@ -33,11 +33,23 @@ export class EditarClienteComponent implements OnInit {
   }
 
   guardar({value, valid}: NgForm){
-    
+    if (!valid) {
+      this.flashMessages.show('Por favor, llene el formulario correctamente.', {
+        cssClass: 'alert-danger', timeout: 4000
+      });
+    } else {
+      //Se modifica el cliente
+      value.id = this.id;
+      this.clientesServicio.modificar(value);
+      this.router.navigate(['/']);
+    }
   }
 
   eliminar(){
-
+    if (confirm('Seguro, ¿Qué desea eliminar el cliente?')) {
+      this.clientesServicio.eliminar(this.cliente);
+      this.router.navigate(['/']);
+    }
   }
 
 }
