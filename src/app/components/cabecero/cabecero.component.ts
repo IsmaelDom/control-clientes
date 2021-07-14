@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -11,9 +12,11 @@ export class CabeceroComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   loggedInUser!: string;
+  permitirRegistro: boolean = false;
 
   constructor(private loginService: LoginService,
-              private router: Router) { }
+              private router: Router,
+              private configuracionServicio: ConfiguracionService) { }
 
   ngOnInit(): void {
     this.loginService.getAuth().subscribe(auth => {
@@ -23,7 +26,11 @@ export class CabeceroComponent implements OnInit {
       } else {
         this.isLoggedIn = false;
       }
-    })
+    });
+  
+    this.configuracionServicio.getConfiguracion().subscribe(configuracion => {
+      this.permitirRegistro = configuracion.permitirRegistro!;    
+    });
   }
 
   logout(){

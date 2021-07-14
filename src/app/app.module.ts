@@ -22,6 +22,7 @@ import { ClienteServicio } from './services/cliente.service';
 import { LoginService } from './services/login.service';
 import { AuthGuard } from './guards/auth.guard';
 import { ConfiguracionService } from './services/configuracion.service';
+import { ConfiguracionGuard } from './guards/configuracion.guard';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ConfiguracionService } from './services/configuracion.service';
     LoginService,
     AuthGuard,
     ConfiguracionService,
+    ConfiguracionGuard
     //{provide: FirestoreSettingsToken, useValue:{}}
   ],
   bootstrap: [AppComponent]
